@@ -1,0 +1,829 @@
+/* ==========================================================================
+   HLB PORTFOLIO - MAIN STYLESHEET
+   ========================================================================== */
+
+/* COLORS & SYSTEM VARIABLES */
+:root {
+    --color1: #002175;
+    --color2: #0038c6;
+    --color3: #0048ff;
+    --color4: #5484fd;
+    --color5: #b1c7ff;
+    --color6: #d7dbff;
+
+    --text-dark: #001344;
+    --text-light: #ffffff;
+    --shadow-sm: 0 4px 12px rgba(0, 33, 117, 0.08);
+    --shadow-md: 0 10px 25px rgba(0, 33, 117, 0.14);
+    --shadow-lg: 0 18px 36px rgba(0, 33, 117, 0.2);
+    --transition-fast: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* FONT-FACES (PRESERVED AS SPECIFIED) */
+@font-face {
+    font-family: "GothamBlack";
+    src: url("../Gotham/Gotham Black/Gotham Black.otf");
+    font-display: swap;
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "GothamMedium";
+    src: url("../Gotham/Gotham Medium/Gotham Medium.otf");
+    font-display: swap;
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "GothamLight";
+    src: url("../Gotham/Gotham Light/Gotham Light.otf");
+    font-display: swap;
+    font-weight: 300;
+}
+
+/* RESET */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: radial-gradient(circle at 50% 0%, #e8eeff 0%, var(--color6) 45%, var(--color5) 100%);
+    background-color: var(--color5);
+    color: var(--text-dark);
+    font-family: "GothamMedium", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.65;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+b,
+strong {
+    font-family: "GothamBlack";
+}
+
+/* HEADER & NAVIGATION */
+/* HEADER & NAVIGATION */
+.Header {
+    background-color: var(--color1);
+    border-bottom: 2px solid var(--color2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0, 33, 117, 0.25);
+    backdrop-filter: blur(10px);
+    /* Stretch to viewport edge with 5px left + 5px bottom gutter */
+    margin: 0 0 5px 5px;
+    width: calc(100% - 5px);
+    border-radius: 0 0 14px 0;
+}
+
+.Header-Container {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0.7rem 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Navigation-Bar {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 0.6rem;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.Navigation-Bar a,
+.Navigation-Bar .NavButton,
+.Navigation-Bar #Button {
+    background-color: var(--color4);
+    color: #ffffff;
+    font-family: "GothamMedium";
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    padding: 0.65rem 1rem;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* Every item stretches equally across the bar */
+    flex: 1 1 0;
+    min-width: 90px;
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+}
+
+.Navigation-Bar a p,
+.Navigation-Bar .NavButton p,
+.Navigation-Bar #Button p {
+    margin: 0;
+    white-space: nowrap;
+}
+
+.Navigation-Bar a:hover,
+.Navigation-Bar .NavButton:hover,
+.Navigation-Bar #Button:hover {
+    background-color: var(--color2);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color5);
+}
+
+.Navigation-Bar a.active,
+.Navigation-Bar .NavButton.active {
+    background-color: var(--color2);
+    color: #ffffff;
+    border-color: var(--color5);
+    font-weight: bold;
+}
+
+/* --- Session-aware nav (login / account / logout) --- */
+.NavAuth-Group {
+    display: flex;
+    gap: 0.6rem;
+    flex: 2 1 0;
+    min-width: 200px;
+    align-items: stretch;
+}
+
+.NavAuth-Group .NavButton {
+    flex: 1 1 0;
+}
+
+.NavAccount {
+    background-color: var(--color2) !important;
+    border-color: var(--color5) !important;
+    gap: 0.55rem;
+}
+
+.NavAvatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--color6);
+    color: var(--color1);
+    font-family: "GothamBlack";
+    font-size: 0.8rem;
+    line-height: 1;
+}
+
+.NavLogout {
+    background-color: transparent !important;
+    border: 2px solid var(--color4) !important;
+    color: var(--color6) !important;
+}
+
+.NavLogout:hover {
+    background-color: #b3261e !important;
+    border-color: #b3261e !important;
+    color: #fff !important;
+}
+
+/* Active Nav State */
+.Navigation-Bar a.active,
+.Navigation-Bar .NavButton.active {
+    background-color: var(--color2);
+    color: #ffffff;
+    border-color: var(--color5);
+    font-weight: bold;
+}
+
+/* MAIN CONTENT */
+main {
+    flex: 1;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3.5rem 1.5rem;
+    animation: FadeIn 0.8s ease forwards;
+}
+
+/* TITLE HERO CARD */
+.Title-Card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.Title-Card h1 {
+    font-family: "GothamBlack";
+    color: var(--color1);
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    line-height: 1.15;
+}
+
+.Title-Card h2 {
+    font-family: "GothamMedium";
+    color: var(--color2);
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    letter-spacing: 0.5px;
+    font-weight: 500;
+    max-width: 800px;
+}
+
+/* INFORMATION CARDS GRID */
+.Info-Cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    justify-content: center;
+    align-items: stretch;
+    max-width: 900px;
+    margin: 0 auto 3rem;
+}
+
+.Information-Card {
+    font-family: "GothamMedium";
+    background: #ffffff;
+    color: var(--text-dark);
+    padding: 2.25rem 2rem;
+    border-radius: 16px;
+    border: 2px solid var(--color4);
+    box-shadow: var(--shadow-md);
+    text-align: left;
+    line-height: 1.75;
+    font-size: 1.05rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.Information-Card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background-color: var(--color3);
+    transition: width var(--transition-fast);
+}
+
+.Information-Card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color2);
+}
+
+.Information-Card:hover::before {
+    width: 10px;
+}
+
+/* ==========================================================================
+   AUTH (login / register / account)
+   ========================================================================== */
+   .Auth-Wrap {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem 0 4rem;
+}
+
+.Auth-Card {
+    width: 100%;
+    max-width: 460px;
+    background: #fff;
+    border: 2px solid var(--color4);
+    border-radius: 18px;
+    box-shadow: var(--shadow-md);
+    padding: 2.5rem 2.25rem;
+}
+
+.Auth-Card h1 {
+    font-family: "GothamBlack";
+    color: var(--color1);
+    letter-spacing: 2px;
+    text-align: center;
+    margin-bottom: 0.35rem;
+    font-size: clamp(1.6rem, 4vw, 2.1rem);
+}
+
+.Auth-Card .Auth-Sub {
+    text-align: center;
+    color: var(--color2);
+    margin-bottom: 1.75rem;
+    font-size: 0.95rem;
+}
+
+.Auth-Form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+.Auth-Form .Form-Group label {
+    font-size: 0.85rem;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+}
+
+.Auth-Submit {
+    width: 100%;
+    justify-content: center;
+    align-self: stretch;
+    margin-top: 0.35rem;
+}
+
+.Auth-Alert {
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    margin-bottom: 1.1rem;
+    border: 2px solid transparent;
+}
+
+.Auth-Alert.error {
+    background: #fdecea;
+    border-color: #f5c2c0;
+    color: #8b1a13;
+}
+
+.Auth-Alert.success {
+    background: #e8f5ec;
+    border-color: #b7e0c3;
+    color: #14532d;
+}
+
+.Auth-Footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--color1);
+}
+
+.Auth-Footer a {
+    color: var(--color2);
+    font-family: "GothamBlack";
+    text-decoration: none;
+}
+
+.Auth-Footer a:hover {
+    text-decoration: underline;
+}
+
+.Field-Hint {
+    font-size: 0.78rem;
+    color: #4a5580;
+    margin-top: 0.15rem;
+}
+
+/* Password strength meter */
+.Pw-Meter {
+    height: 6px;
+    border-radius: 9999px;
+    background: var(--color6);
+    overflow: hidden;
+    margin-top: 0.35rem;
+}
+
+.Pw-Meter span {
+    display: block;
+    height: 100%;
+    width: 0;
+    background: #b3261e;
+    transition: width 0.25s ease, background 0.25s ease;
+}
+
+.Pw-Meter[data-score="2"] span { background: #d17b00; }
+.Pw-Meter[data-score="3"] span { background: #0a7d3a; }
+.Pw-Meter[data-score="4"] span { background: #0a7d3a; }
+
+/* Account dashboard bits */
+.Account-Info {
+    display: grid;
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem 1.15rem;
+    border-radius: 12px;
+    background: #f6f8ff;
+    border: 1px solid var(--color5);
+    font-size: 0.95rem;
+}
+
+.Account-Info strong {
+    color: var(--color1);
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+    .Navigation-Bar a,
+    .Navigation-Bar .NavButton,
+    .Navigation-Bar #Button {
+        min-width: 72px;
+        font-size: 0.82rem;
+        padding: 0.5rem 0.7rem;
+        border-radius: 8px;
+    }
+    .NavAuth-Group { min-width: 160px; }
+}
+
+@media (max-width: 480px) {
+    .Header { border-radius: 0 0 10px 0; }
+    .Navigation-Bar { gap: 0.4rem; }
+    .Navigation-Bar a,
+    .Navigation-Bar .NavButton,
+    .Navigation-Bar #Button {
+        font-size: 0.75rem;
+        padding: 0.45rem 0.55rem;
+        min-width: 60px;
+    }
+    .NavAvatar { width: 22px; height: 22px; font-size: 0.7rem; }
+}
+
+/* FOOTER */
+.Footer {
+    background-color: var(--color1);
+    border-top: 2px solid var(--color2);
+    padding: 1.5rem;
+    text-align: center;
+    margin-top: auto;
+    width: 100%;
+}
+
+.Footer p {
+    font-family: "GothamLight";
+    font-size: 0.9rem;
+    color: var(--color6);
+    letter-spacing: 0.5px;
+}
+
+/* ANIMATIONS */
+@keyframes FadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    .Header-Container {
+        flex-direction: column;
+        padding: 1rem 1.25rem;
+        gap: 0.75rem;
+    }
+
+    .Navigation-Bar {
+        justify-content: center;
+        width: 100%;
+        gap: 0.5rem;
+    }
+
+    .Navigation-Bar a,
+    .Navigation-Bar .NavButton,
+    .Navigation-Bar #Button {
+        font-size: 0.85rem;
+        padding: 0.45rem 0.9rem;
+    }
+
+    main {
+        padding: 2.5rem 1.25rem;
+    }
+
+    .Title-Card {
+        padding: 1.5rem 0.5rem;
+    }
+
+    .Info-Cards {
+        gap: 1.5rem;
+    }
+
+    .Information-Card {
+        padding: 1.75rem 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .Navigation-Bar {
+        gap: 0.4rem;
+    }
+
+    .Navigation-Bar a,
+    .Navigation-Bar .NavButton,
+    .Navigation-Bar #Button {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.75rem;
+    }
+}
+
+/* ==========================================================================
+   ADDITIONS: About, Contact, Projects, Buttons, Accessibility
+   ========================================================================== */
+:focus-visible {
+    outline: 3px solid var(--color3);
+    outline-offset: 3px;
+    border-radius: 6px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.Hero-Actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1.75rem;
+}
+
+.Btn {
+    font-family: "GothamMedium", sans-serif;
+    text-decoration: none;
+    padding: 0.75rem 1.6rem;
+    border-radius: 9999px;
+    background: var(--color2);
+    color: #fff;
+    border: 2px solid var(--color2);
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+}
+
+.Btn:hover {
+    background: var(--color1);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.Btn.secondary {
+    background: transparent;
+    color: var(--color2);
+}
+
+.Btn.secondary:hover {
+    background: var(--color2);
+    color: #fff;
+}
+
+/* About */
+.In-Depth-About {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    margin-bottom: 4.5rem;
+}
+
+.About-Hero-Card,
+.Contact-Form-Container {
+    background: #fff;
+    border: 2px solid var(--color4);
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    padding: 2.5rem 2rem;
+}
+
+.About-Hero-Card h2 {
+    font-family: "GothamBlack";
+    color: var(--color1);
+    letter-spacing: 1.5px;
+    margin-bottom: 1rem;
+}
+
+.About-Hero-Card p+p {
+    margin-top: 1rem;
+}
+
+.About-Pillars-Grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 1.5rem;
+}
+
+.About-Pillar-Card,
+.Project-Card {
+    background: #fff;
+    border: 2px solid var(--color5);
+    border-radius: 16px;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.25rem;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.About-Pillar-Card:hover,
+.Project-Card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color3);
+}
+
+.About-Pillar-Card h3,
+.Project-Card h3 {
+    font-family: "GothamBlack";
+    color: var(--color1);
+    margin: 0.75rem 0 0.5rem;
+}
+
+.Pillar-Badge,
+.Project-Status {
+    display: inline-block;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background: var(--color6);
+    color: var(--color2);
+    padding: 0.25rem 0.8rem;
+    border-radius: 9999px;
+}
+
+.Tech-Tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.Tech-Tag {
+    font-size: 0.8rem;
+    background: var(--color1);
+    color: var(--color6);
+    padding: 0.25rem 0.7rem;
+    border-radius: 6px;
+}
+
+/* Contact */
+.Contact-Title {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.Contact-Title h1 {
+    font-family: "GothamBlack";
+    color: var(--color1);
+    letter-spacing: 2px;
+}
+
+.Contact-Subtitle {
+    max-width: 640px;
+    margin: 0.75rem auto 0;
+    color: var(--color2);
+}
+
+.Contact-Form-Container {
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.Contact-Form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.Form-Row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+}
+
+.Form-Group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.Form-Group label {
+    font-size: 0.9rem;
+    color: var(--color1);
+}
+
+.required {
+    color: #c62828;
+}
+
+.Form-Control {
+    font: inherit;
+    color: var(--text-dark);
+    background: #f6f8ff;
+    border: 2px solid var(--color5);
+    border-radius: 10px;
+    padding: 0.7rem 0.9rem;
+    width: 100%;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.Form-Control:focus {
+    outline: none;
+    border-color: var(--color3);
+    box-shadow: 0 0 0 4px rgba(84, 132, 253, 0.25);
+    background: #fff;
+}
+
+textarea.Form-Control {
+    resize: vertical;
+    min-height: 140px;
+}
+
+.Form-Submit-Btn {
+    font: inherit;
+    display: inline-flex;
+    gap: 0.6rem;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: var(--color2);
+    color: #fff;
+    border: none;
+    border-radius: 9999px;
+    padding: 0.85rem 1.8rem;
+    align-self: flex-start;
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+}
+
+.Form-Submit-Btn:hover {
+    background: var(--color1);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.honeypot-field {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/* Projects */
+.Projects-Grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.Project-Card.featured {
+    border: 2px solid var(--color4);
+    box-shadow: var(--shadow-md);
+}
+
+.Project-Card.soon {
+    border-style: dashed;
+    justify-content: center;
+    text-align: center;
+    opacity: 0.85;
+}
+
+.Project-Links {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+    .Form-Row {
+        grid-template-columns: 1fr;
+    }
+
+    .About-Hero-Card,
+    .Contact-Form-Container {
+        padding: 1.75rem 1.25rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+}

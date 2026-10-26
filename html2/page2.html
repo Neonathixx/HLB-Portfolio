@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me | Bartolome</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <header class="Header">
+        <div class="Header-Container">
+            <nav class="Navigation-Bar" aria-label="Main Navigation">
+                <a href="index.html" class="NavButton">
+                    <p>Home</p>
+                </a>
+                <a href="page2.html" class="NavButton active">
+                    <p>About Me</p>
+                </a>
+                <a href="page3.html" class="NavButton">
+                    <p>Projects</p>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- IN-DEPTH ABOUT SECTION -->
+        <section class="In-Depth-About">
+            <div class="About-Hero-Card">
+                <h2>DEVELOPER & SOUND DESIGNER</h2>
+                <p>
+                    Hiam Louis "Yam" Bartolome is a Bachelor of Science in Information Technology student at <strong>Pamantasan ng Lungsod ng Valenzuela (PLV)</strong>
+                    in Valenzuela City, Metro Manila. Specializing in full-stack architecture, relational database engineering, and gameplay mechanics,
+                    Yam combines computational problem-solving with artistic audio production.
+                </p>
+                <p>
+                    Beyond software engineering, Yam is the multi-instrumentalist, songwriter, and audio producer behind the musical moniker <strong>Aislefront</strong>. 
+                    By blending dynamic audio synthesis, diverse soundscapes, and expressive melodic scoring directly with game loops and interactive software,
+                    he builds experiences that resonate both mechanically and emotionally.
+                </p>
+            </div>
+
+            <div class="About-Pillars-Grid">
+                <article class="About-Pillar-Card">
+                    <div>
+                        <div class="Pillar-Header">
+                            <span class="Pillar-Badge">Engineering</span>
+                        </div>
+                        <h3>Backend & Systems</h3>
+                        <p>
+                            Designing robust transactional schemas, normalized relational models, and dynamic algorithms. Experienced with dynamic memory handling,
+                            custom sorting structures, and secure access management.
+                        </p>
+                    </div>
+                    <div class="Tech-Tags">
+                        <span class="Tech-Tag">MySQL</span>
+                        <span class="Tech-Tag">C++</span>
+                        <span class="Tech-Tag">Python</span>
+                        <span class="Tech-Tag">Java</span>
+                        <span class="Tech-Tag">Schema Design</span>
+                    </div>
+                </article>
+
+                <article class="About-Pillar-Card">
+                    <div>
+                        <div class="Pillar-Header">
+                            <span class="Pillar-Badge">Interactive</span>
+                        </div>
+                        <h3>Game Development</h3>
+                        <p>
+                            Developing core game logic, collision detection algorithms, state machines, and responsive player control systems. 
+                            Driven by game design theory to craft tactile interactive experiences.
+                        </p>
+                    </div>
+                    <div class="Tech-Tags">
+                        <span class="Tech-Tag">Game Mechanics</span>
+                        <span class="Tech-Tag">State Machines</span>
+                        <span class="Tech-Tag">Collision Loops</span>
+                        <span class="Tech-Tag">Interactive UI</span>
+                    </div>
+                </article>
+
+                <article class="About-Pillar-Card">
+                    <div>
+                        <div class="Pillar-Header">
+                            <span class="Pillar-Badge">Audio</span>
+                        </div>
+                        <h3>Game Scoring & Audio</h3>
+                        <p>
+                            Composing immersive original soundtracks, adaptive background audio, and experimental soundscapes tailored for games.
+                            Skilled in arranging, tracking, mixing, and dynamic sound design.
+                        </p>
+                    </div>
+                    <div class="Tech-Tags">
+                        <span class="Tech-Tag">Adaptive Audio</span>
+                        <span class="Tech-Tag">FL Studio</span>
+                        <span class="Tech-Tag">BandLab</span>
+                        <span class="Tech-Tag">Soundtracks</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- CONTACT FIELD SECTION -->
+        <section class="Contact-Section" id="contact">
+            <div class="Contact-Title">
+                <h1>CONTACT ME!</h1>
+                <p class="Contact-Subtitle">
+                    Interested in collaborating on game development, backend architectures, or game scoring? Send a message below.
+                </p>
+            </div>
+
+            <div class="Contact-Form-Container">
+                <form class="Contact-Form" action="contact.php" method="POST">
+                    <!-- Anti-spam Honeypot -->
+                    <div class="honeypot-field" aria-hidden="true">
+                        <label for="website_url">Leave this empty</label>
+                        <input type="text" name="website_url" id="website_url" tabindex="-1" autocomplete="off">
+                    </div>
+
+                    <div class="Form-Row">
+                        <div class="Form-Group">
+                            <label for="name">Your Name <span class="required">*</span></label>
+                            <input 
+                                type="text" 
+                                id="name" 
+                                name="name" 
+                                class="Form-Control" 
+                                placeholder="e.g. Juan dela Cruz" 
+                                required
+                            >
+                        </div>
+
+                        <div class="Form-Group">
+                            <label for="email">Email Address <span class="required">*</span></label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                class="Form-Control" 
+                                placeholder="e.g. juan@example.com" 
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <div class="Form-Group">
+                        <label for="subject">Inquiry Subject <span class="required">*</span></label>
+                        <select id="subject" name="subject" class="Form-Control" required>
+                            <option value="" disabled selected>Select a topic...</option>
+                            <option value="Game Development & Mechanics">Game Development & Mechanics</option>
+                            <option value="Full-Stack & Backend Systems">Full-Stack & Backend Systems</option>
+                            <option value="Game Scoring & Sound Design">Game Scoring & Sound Design</option>
+                            <option value="Academic & Other Inquiries">Academic & Other Inquiries</option>
+                        </select>
+                    </div>
+
+                    <div class="Form-Group">
+                        <label for="message">Your Message <span class="required">*</span></label>
+                        <textarea 
+                            id="message" 
+                            name="message" 
+                            class="Form-Control" 
+                            rows="6" 
+                            placeholder="Describe your project, game concept, or collaboration inquiry..." 
+                            required
+                        ></textarea>
+                    </div>
+
+                    <button type="submit" class="Form-Submit-Btn">
+                        <span>Send Message</span>
+                        <span>&rarr;</span>
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="Footer">
+        <p>&copy; 2026 Hiam Louis Bartolome. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
