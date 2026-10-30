@@ -106,9 +106,9 @@
         <!-- CONTACT FIELD SECTION -->
         <section class="Contact-Section" id="contact">
             <div class="Contact-Title">
-                <h1>CONTACT ME!</h1>
+                <h1>THE NEWSLETTER</h1>
                 <p class="Contact-Subtitle">
-                    Interested in collaborating on game development, backend architectures, or game scoring? Send a message below.
+                    Get the latest updates from Yam, or send an e-mail for collaborations and more inquiries!
                 </p>
             </div>
 
@@ -122,13 +122,23 @@
 
                     <div class="Form-Row">
                         <div class="Form-Group">
-                            <label for="name">Your Name <span class="required">*</span></label>
+                            <label for="name">Your First Name <span class="required">*</span></label>
+                            <input 
+                                type="text" 
+                                id="name" 
+                                name="name" 
+                                class="Form-Control"
+                                required
+                            >
+                        </div>
+
+                        <div class="Form-Group">
+                            <label for="name">Your Last Name <span class="required">*</span></label>
                             <input 
                                 type="text" 
                                 id="name" 
                                 name="name" 
                                 class="Form-Control" 
-                                placeholder="e.g. Juan dela Cruz" 
                                 required
                             >
                         </div>
@@ -139,38 +149,15 @@
                                 type="email" 
                                 id="email" 
                                 name="email" 
-                                class="Form-Control" 
+                                class="Form-Control-2" 
                                 placeholder="e.g. juan@example.com" 
                                 required
                             >
                         </div>
                     </div>
 
-                    <div class="Form-Group">
-                        <label for="subject">Inquiry Subject <span class="required">*</span></label>
-                        <select id="subject" name="subject" class="Form-Control" required>
-                            <option value="" disabled selected>Select a topic...</option>
-                            <option value="Game Development & Mechanics">Game Development & Mechanics</option>
-                            <option value="Full-Stack & Backend Systems">Full-Stack & Backend Systems</option>
-                            <option value="Game Scoring & Sound Design">Game Scoring & Sound Design</option>
-                            <option value="Academic & Other Inquiries">Academic & Other Inquiries</option>
-                        </select>
-                    </div>
-
-                    <div class="Form-Group">
-                        <label for="message">Your Message <span class="required">*</span></label>
-                        <textarea 
-                            id="message" 
-                            name="message" 
-                            class="Form-Control" 
-                            rows="6" 
-                            placeholder="Describe your project, game concept, or collaboration inquiry..." 
-                            required
-                        ></textarea>
-                    </div>
-
                     <button type="submit" class="Form-Submit-Btn">
-                        <span>Send Message</span>
+                        <span>Register</span>
                         <span>&rarr;</span>
                     </button>
                 </form>
