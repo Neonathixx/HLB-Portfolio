@@ -23,21 +23,21 @@
 /* FONT-FACES (PRESERVED AS SPECIFIED) */
 @font-face {
     font-family: "GothamBlack";
-    src: url("../Gotham/Gotham Black/Gotham Black.otf");
+    src: url("/Gotham/Gotham Black/Gotham Black.otf");
     font-display: swap;
     font-weight: bold;
 }
 
 @font-face {
     font-family: "GothamMedium";
-    src: url("../Gotham/Gotham Medium/Gotham Medium.otf");
+    src: url("/Gotham/Gotham Medium/Gotham Medium.otf");
     font-display: swap;
     font-weight: 500;
 }
 
 @font-face {
     font-family: "GothamLight";
-    src: url("../Gotham/Gotham Light/Gotham Light.otf");
+    src: url("/Gotham/Gotham Light/Gotham Light.otf");
     font-display: swap;
     font-weight: 300;
 }
@@ -79,9 +79,9 @@ strong {
     box-shadow: 0 4px 20px rgba(0, 33, 117, 0.25);
     backdrop-filter: blur(10px);
     /* Stretch to viewport edge with 5px left + 5px bottom gutter */
-    margin: 0 0 5px 5px;
-    width: calc(100% - 5px);
-    border-radius: 0 0 14px 0;
+    margin: 0 0 0 0;
+    width: 100%;
+    border-radius: 0 0 14px 14px;
 }
 
 .Header-Container {
@@ -97,10 +97,10 @@ strong {
 .Navigation-Bar {
     display: flex;
     flex-direction: row;
-    align-items: stretch;
+    align-items: center;
     justify-content: space-between;
     gap: 0.6rem;
-    width: 100%;
+    width: 50%;
     flex-wrap: wrap;
 }
 
@@ -113,10 +113,10 @@ strong {
     font-size: 0.95rem;
     letter-spacing: 0.5px;
     text-decoration: none;
-    padding: 0.65rem 1rem;
+    padding: 0.65rem 0.50rem;
     border-radius: 10px;
     border: 1px solid transparent;
-    display: inline-flex;
+    display: grid;
     align-items: center;
     justify-content: center;
     /* Every item stretches equally across the bar */
@@ -794,7 +794,7 @@ textarea.Form-Control {
 /* Projects */
 .Projects-Grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
     gap: 2rem;
     margin-bottom: 3rem;
 }
