@@ -26,21 +26,33 @@
    project folder kept that exact name; this works whatever it's called. */
 @font-face {
     font-family: "GothamBlack";
+<<<<<<< HEAD
     src: url("Gotham/Gotham\ Black/Gotham\ Black.otf");
+=======
+    src: url("/Gotham/Gotham Black/Gotham Black.otf");
+>>>>>>> 8f6bbb412ed461e6be0f2d46975047d64b6d4bc0
     font-display: swap;
     font-weight: bold;
 }
 
 @font-face {
     font-family: "GothamMedium";
+<<<<<<< HEAD
     src: url("Gotham/Gotham\ Medium/Gotham\ Medium.otf");
+=======
+    src: url("/Gotham/Gotham Medium/Gotham Medium.otf");
+>>>>>>> 8f6bbb412ed461e6be0f2d46975047d64b6d4bc0
     font-display: swap;
     font-weight: 500;
 }
 
 @font-face {
     font-family: "GothamLight";
+<<<<<<< HEAD
     src: url("Gotham/Gotham\ Light/Gotham\ Light.otf");
+=======
+    src: url("/Gotham/Gotham Light/Gotham Light.otf");
+>>>>>>> 8f6bbb412ed461e6be0f2d46975047d64b6d4bc0
     font-display: swap;
     font-weight: 300;
 }
@@ -103,9 +115,13 @@ strong {
     align-items: center;
     justify-content: space-between;
     gap: 0.6rem;
+<<<<<<< HEAD
     /* Was 50%, which five items couldn't fit without wrapping. min() keeps
        the bar centred and capped on wide screens, full-width on narrow ones. */
     width: min(100%, 980px);
+=======
+    width: 50%;
+>>>>>>> 8f6bbb412ed461e6be0f2d46975047d64b6d4bc0
     flex-wrap: wrap;
 }
 

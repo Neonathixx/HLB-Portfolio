@@ -12,10 +12,10 @@
     <header class="Header">
         <div class="Header-Container">
             <nav class="Navigation-Bar" aria-label="Main Navigation">
-                <a href="index.html" class="NavButton">
+                <a href="index.html" class="NavButton active">
                     <p>Home</p>
                 </a>
-                <a href="page2.html" class="NavButton active">
+                <a href="page2.html" class="NavButton">
                     <p>About Me</p>
                 </a>
                 <a href="page3.html" class="NavButton">
@@ -24,9 +24,12 @@
                 <a href="page4.html" class="NavButton">
                     <p>Newsletter</p>
                 </a>
+<<<<<<< HEAD
                 <a href="php/login.php" id="navLogin" class="NavButton NavButtonDistinct">
                     <p>Log In</p>
                 </a>
+=======
+>>>>>>> 8f6bbb412ed461e6be0f2d46975047d64b6d4bc0
             </nav>
         </div>
     </header>
@@ -119,7 +122,11 @@
             </div>
 
             <div class="Contact-Form-Container">
+<<<<<<< HEAD
                 <form class="Contact-Form" id="registerForm" action="php/contact.php" method="POST" autocomplete="on" novalidate>
+=======
+                <form class="Contact-Form" action="php/contact.php" method="POST" autocomplete="on">
+>>>>>>> 8f6bbb412ed461e6be0f2d46975047d64b6d4bc0
                     <!-- Anti-spam Honeypot -->
                     <div class="honeypot-field" aria-hidden="true">
                         <label for="website_url">Leave this empty</label>
@@ -147,6 +154,52 @@
                                 name="last_name"
                                 class="Form-Control"
                                 autocomplete="family-name"
+<<<<<<< HEAD
+=======
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <div class="Form-Group">
+                        <label for="username">Username <span class="required">*</span></label>
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            class="Form-Control"
+                            placeholder="3-32 characters: letters, numbers, underscore"
+                            pattern="[A-Za-z0-9_]{3,32}"
+                            autocomplete="username"
+                            required
+                        >
+                    </div>
+
+                    <div class="Form-Group">
+                        <label for="email">Email Address <span class="required">*</span></label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            class="Form-Control"
+                            placeholder="e.g. juan@example.com"
+                            autocomplete="email"
+                            required
+                        >
+                    </div>
+
+                    <div class="Form-Row">
+                        <div class="Form-Group">
+                            <label for="password">Password <span class="required">*</span></label>
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                class="Form-Control"
+                                placeholder="At least 8 characters"
+                                autocomplete="new-password"
+                                minlength="8"
+>>>>>>> 8f6bbb412ed461e6be0f2d46975047d64b6d4bc0
                                 required
                             >
                         </div>
@@ -183,6 +236,7 @@
 
                     <div class="Form-Row">
                         <div class="Form-Group">
+<<<<<<< HEAD
                             <label for="password">Password <span class="required">*</span></label>
                             <input
                                 type="password"
@@ -193,6 +247,17 @@
                                 autocomplete="new-password"
                                 minlength="8"
                                 maxlength="72"
+=======
+                            <label for="confirm_password">Confirm Password <span class="required">*</span></label>
+                            <input
+                                type="password"
+                                id="confirm_password"
+                                name="confirm_password"
+                                class="Form-Control"
+                                placeholder="Re-enter your password"
+                                autocomplete="new-password"
+                                minlength="8"
+>>>>>>> 8f6bbb412ed461e6be0f2d46975047d64b6d4bc0
                                 required
                             >
                             <div class="Pw-Meter" id="pwMeter" data-score="0" aria-hidden="true"><span></span></div>
