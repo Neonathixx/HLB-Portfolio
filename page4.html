@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="The Aisle — a newsletter from Hiam Louis Bartolome on backend work, game development and audio production.">
+    <title>Newsletter | Bartolome</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="Header">
+        <div class="Header-Container">
+            <nav class="Navigation-Bar" aria-label="Main Navigation">
+                <a href="index.html" class="NavButton">
+                    <p>Home</p>
+                </a>
+                <a href="page2.html" class="NavButton">
+                    <p>About Me</p>
+                </a>
+                <a href="page3.html" class="NavButton">
+                    <p>Projects</p>
+                </a>
+                <a href="page4.html" class="NavButton active">
+                    <p>Newsletter</p>
+                </a>
+                <a href="php/login.php" id="navLogin" class="NavButton NavButtonDistinct">
+                    <p>Log In</p>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="News-Main">
+        <article class="News-Sheet">
+
+            <!-- Folio line: the small print a masthead sits on -->
+            <div class="News-Folio">
+                <span>Vol. I &nbsp;&middot;&nbsp; No. 04</span>
+                <span>Published quarterly</span>
+                <span>Free to read</span>
+            </div>
+
+            <!-- Masthead -->
+            <div class="News-Masthead">
+                <h1 class="News-Wordmark">THE AISLE</h1>
+                <p class="News-Motto">Notes on backend work, game mechanics and sound, from the desk of Hiam Louis Bartolome</p>
+            </div>
+
+            <!-- Dateline -->
+            <div class="News-Dateline">
+                <span>Valenzuela City, Metro Manila</span>
+                <span>November 2026</span>
+                <span>Four pages</span>
+            </div>
+
+            <div class="News-Grid">
+
+                <!-- LEAD STORY -->
+                <section class="News-Lead">
+                    <p class="News-Kicker">The Little Paw Patissier</p>
+                    <h2 class="News-Headline">Sessions that finally stay put</h2>
+                    <p class="News-Byline">By Yam Bartolome</p>
+
+                    <div class="News-Columns">
+                        <p class="News-Opening">For weeks the patisserie platform had a habit that made no sense: a customer would log in, the browser would hold the session cookie exactly as expected, and the very next request would come back as if nobody had ever signed in.</p>
+
+                        <p>The culprit was not the login code. On shared hosting, PHP writes session files to a temporary directory that the host is free to clear, and clear it did &mdash; between one request and the next. The cookie survived. The file it pointed at did not.</p>
+
+                        <p>Moving sessions into MySQL fixed it. A custom session handler stores each session as a row, which means the data lives exactly where the rest of the application's state already lives, and survives whatever the host does to its temp folders.</p>
+
+                        <p>The lesson generalises past this one bug. Anything the application cannot afford to lose belongs in the database, not in a directory whose lifetime somebody else controls.</p>
+                    </div>
+                </section>
+
+                <!-- SECOND STORY -->
+                <section class="News-Story">
+                    <p class="News-Kicker">Game development</p>
+                    <h3 class="News-Subhead">A board game learns to count its own gems</h3>
+                    <p class="News-Byline">Gem Ko 'To! &middot; in progress</p>
+                    <p>Translating a physical board game into Unity turns out to be mostly a bookkeeping problem. The rules a group of players enforce by looking at the table have to become explicit state: whose turn it is, what is legal right now, and what happens when two effects resolve at once.</p>
+                    <p>Current work is on the turn state machine, with the scoring pass written as a pure function so it can be tested without the board on screen.</p>
+                </section>
+
+                <!-- THIRD STORY -->
+                <section class="News-Story">
+                    <p class="News-Kicker">Aislefront</p>
+                    <h3 class="News-Subhead">Scoring a scene that hasn't been built yet</h3>
+                    <p class="News-Byline">Audio production</p>
+                    <p>Writing music for a game in progress means writing for a scene that keeps changing length. The answer has been to compose in loopable sections rather than fixed cues, so a passage can hold for eight bars or eighty without an audible seam.</p>
+                    <p>Three sketches are tracked and waiting on the levels they belong to.</p>
+                </section>
+
+                <!-- RAIL: in brief + subscribe -->
+                <aside class="News-Rail">
+                    <section class="News-Brief">
+                        <h3 class="News-RailHead">In brief</h3>
+                        <ul>
+                            <li><strong>Accounts are live.</strong> Registration and log-in now run on this site, with throttling on repeated failures.</li>
+                            <li><strong>Coursework.</strong> Third year, BSIT at Pamantasan ng Lungsod ng Valenzuela.</li>
+                            <li><strong>Reading.</strong> Working through relational modelling properly, instead of by habit.</li>
+                            <li><strong>Next issue.</strong> A write-up of the Unity scoring pass, and two Aislefront tracks.</li>
+                        </ul>
+                    </section>
+
+                    <!-- The subscribe form, set as a classified advertisement -->
+                    <section class="News-Classified" id="subscribe">
+                        <p class="News-ClassifiedRule">Classified</p>
+                        <h3 class="News-RailHead">Have it delivered</h3>
+                        <p class="News-ClassifiedCopy">One issue a quarter. Backend notes, game progress and new music. No forwarding to anyone else.</p>
+
+                        <form class="News-Form" action="php/newsletter.php" method="POST" novalidate>
+                            <div class="honeypot-field" aria-hidden="true">
+                                <label for="website_url">Leave this empty</label>
+                                <input type="text" name="website_url" id="website_url" tabindex="-1" autocomplete="off">
+                            </div>
+
+                            <div class="Form-Group">
+                                <label for="news_name">Name <span class="News-Optional">optional</span></label>
+                                <input type="text" id="news_name" name="display_name" class="Form-Control"
+                                    autocomplete="name" maxlength="30">
+                            </div>
+
+                            <div class="Form-Group">
+                                <label for="news_email">Email address</label>
+                                <input type="email" id="news_email" name="email" class="Form-Control"
+                                    placeholder="juan@example.com" autocomplete="email" maxlength="190" required>
+                            </div>
+
+                            <button type="submit" class="News-Submit">Subscribe</button>
+                            <p class="News-FormNote">You'll get one email asking you to confirm the address.</p>
+                        </form>
+                    </section>
+                </aside>
+            </div>
+
+            <!-- Back issues: a genuine sequence, so numbering earns its place -->
+            <section class="News-Archive">
+                <h3 class="News-ArchiveHead">Back issues</h3>
+                <ol class="News-ArchiveList">
+                    <li>
+                        <span class="News-ArchiveNo">No. 03</span>
+                        <span class="News-ArchiveTitle">Eighteen endpoints and a payment flow</span>
+                        <span class="News-ArchiveDate">August 2026</span>
+                    </li>
+                    <li>
+                        <span class="News-ArchiveNo">No. 02</span>
+                        <span class="News-ArchiveTitle">Reading JSON when $_POST won't</span>
+                        <span class="News-ArchiveDate">May 2026</span>
+                    </li>
+                    <li>
+                        <span class="News-ArchiveNo">No. 01</span>
+                        <span class="News-ArchiveTitle">Starting a patisserie, in PHP</span>
+                        <span class="News-ArchiveDate">February 2026</span>
+                    </li>
+                </ol>
+            </section>
+
+            <p class="News-Colophon">The Aisle is written and set by Hiam Louis Bartolome. Correspondence welcome.</p>
+        </article>
+    </main>
+
+    <footer class="Footer">
+        <p>&copy; 2026 Hiam Louis Bartolome. All Rights Reserved.</p>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

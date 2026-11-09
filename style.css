@@ -20,24 +20,27 @@
     --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* FONT-FACES (PRESERVED AS SPECIFIED) */
+/* FONT-FACES
+   Paths are relative to this stylesheet, so Gotham/ sits beside style.css.
+   The previous "../HLB-Portfolio-main/..." form only resolved while the
+   project folder kept that exact name; this works whatever it's called. */
 @font-face {
     font-family: "GothamBlack";
-    src: url("../Gotham/Gotham Black/Gotham Black.otf");
+    src: url("Gotham/Gotham\ Black/Gotham\ Black.otf");
     font-display: swap;
     font-weight: bold;
 }
 
 @font-face {
     font-family: "GothamMedium";
-    src: url("../Gotham/Gotham Medium/Gotham Medium.otf");
+    src: url("Gotham/Gotham\ Medium/Gotham\ Medium.otf");
     font-display: swap;
     font-weight: 500;
 }
 
 @font-face {
     font-family: "GothamLight";
-    src: url("../Gotham/Gotham Light/Gotham Light.otf");
+    src: url("Gotham/Gotham\ Light/Gotham\ Light.otf");
     font-display: swap;
     font-weight: 300;
 }
@@ -79,9 +82,9 @@ strong {
     box-shadow: 0 4px 20px rgba(0, 33, 117, 0.25);
     backdrop-filter: blur(10px);
     /* Stretch to viewport edge with 5px left + 5px bottom gutter */
-    margin: 0 0 5px 5px;
-    width: calc(100% - 5px);
-    border-radius: 0 0 14px 0;
+    margin: 0 0 0 0;
+    width: 100%;
+    border-radius: 0 0 14px 14px;
 }
 
 .Header-Container {
@@ -97,10 +100,12 @@ strong {
 .Navigation-Bar {
     display: flex;
     flex-direction: row;
-    align-items: stretch;
+    align-items: center;
     justify-content: space-between;
     gap: 0.6rem;
-    width: 100%;
+    /* Was 50%, which five items couldn't fit without wrapping. min() keeps
+       the bar centred and capped on wide screens, full-width on narrow ones. */
+    width: min(100%, 980px);
     flex-wrap: wrap;
 }
 
@@ -113,10 +118,10 @@ strong {
     font-size: 0.95rem;
     letter-spacing: 0.5px;
     text-decoration: none;
-    padding: 0.65rem 1rem;
+    padding: 0.65rem 0.50rem;
     border-radius: 10px;
     border: 1px solid transparent;
-    display: inline-flex;
+    display: grid;
     align-items: center;
     justify-content: center;
     /* Every item stretches equally across the bar */
@@ -125,6 +130,23 @@ strong {
     transition: all var(--transition-fast);
     box-shadow: var(--shadow-sm);
     cursor: pointer;
+}
+
+/* The Profile / Log In item, set apart from the page links.
+   This selector must NOT also match bare `.Navigation-Bar a`: that would
+   override the rule above for every link in the bar, washing all of them
+   out to --color5 with white text (which also fails contrast). */
+.Navigation-Bar .NavButtonDistinct {
+    background-color: transparent;
+    color: var(--color6);
+    border: 2px solid var(--color4);
+    box-shadow: none;
+}
+
+.Navigation-Bar .NavButtonDistinct:hover {
+    background-color: var(--color4);
+    border-color: var(--color5);
+    color: #ffffff;
 }
 
 .Navigation-Bar a p,
@@ -794,7 +816,7 @@ textarea.Form-Control {
 /* Projects */
 .Projects-Grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
     gap: 2rem;
     margin-bottom: 3rem;
 }
@@ -836,5 +858,586 @@ textarea.Form-Control {
 
     html {
         scroll-behavior: auto;
+    }
+}
+/* ==========================================================================
+   AUTH & PROFILE — additions
+   ========================================================================== */
+.Auth-Alert-List {
+    margin: 0;
+    padding-left: 1.1rem;
+}
+
+.Auth-Alert-List li + li {
+    margin-top: 0.3rem;
+}
+
+/* Show/hide password */
+.Pw-Field {
+    position: relative;
+    display: flex;
+}
+
+.Pw-Field .Form-Control {
+    padding-right: 4.5rem;
+}
+
+.Pw-Toggle {
+    position: absolute;
+    right: 0.4rem;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: var(--color2);
+    font: inherit;
+    font-size: 0.82rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.Pw-Toggle:hover {
+    background: var(--color6);
+}
+
+/* The confirm-password hint turns colour once it has something to say */
+.Field-Hint[data-state="bad"] { color: #b3261e; }
+.Field-Hint[data-state="good"] { color: #0a7d3a; }
+
+/* Profile */
+.Profile-Card {
+    max-width: 520px;
+}
+
+.Profile-Head {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    padding-bottom: 1.4rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--color6);
+}
+
+.Profile-Avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 58px;
+    height: 58px;
+    flex: 0 0 58px;
+    border-radius: 50%;
+    background: var(--color1);
+    color: var(--color6);
+    font-family: "GothamBlack";
+    font-size: 1.6rem;
+    line-height: 1;
+}
+
+.Profile-Name {
+    font-family: "GothamBlack";
+    color: var(--color1);
+    font-size: clamp(1.3rem, 3vw, 1.65rem);
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+    text-align: left;
+    margin: 0;
+}
+
+.Profile-Handle {
+    color: var(--color2);
+    font-size: 0.92rem;
+}
+
+.Account-Row {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: 0.5rem 1rem;
+}
+
+.Account-Row dt {
+    color: var(--color2);
+    font-size: 0.85rem;
+}
+
+.Account-Row dd {
+    margin: 0;
+    color: var(--text-dark);
+    overflow-wrap: anywhere;
+}
+
+.Profile-Actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+.Profile-Actions .Btn {
+    flex: 1 1 auto;
+    text-align: center;
+}
+
+@media (max-width: 480px) {
+    .Account-Row {
+        grid-template-columns: 1fr;
+        gap: 0.1rem;
+    }
+}
+
+/* ==========================================================================
+   THE AISLE — newsletter, set as a newspaper sheet
+   --------------------------------------------------------------------------
+   A printed sheet laid on the site's blue page. Cool newsprint rather than
+   warm cream, so it stays in the HLB palette; the masthead stays in Gotham
+   Black so it reads as a modern broadsheet instead of a Times pastiche.
+   Serif is used only where it earns its keep: running column text.
+   ========================================================================== */
+.News-Main {
+    max-width: 1180px;
+    padding: 2.5rem 1.25rem 4rem;
+}
+
+.News-Sheet {
+    --ink: #001344;
+    --paper: #f7f8fb;
+    --rule: rgba(0, 19, 68, 0.75);
+    --rule-soft: rgba(0, 19, 68, 0.22);
+
+    background: var(--paper);
+    color: var(--ink);
+    padding: clamp(1.5rem, 4vw, 3.25rem);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--rule-soft);
+}
+
+/* --- folio line --- */
+.News-Folio {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    font-family: "GothamMedium";
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(0, 19, 68, 0.65);
+    padding-bottom: 0.6rem;
+}
+
+/* --- masthead, under the newspaper's thick-thin rule --- */
+.News-Masthead {
+    border-top: 3px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: clamp(1.25rem, 3vw, 2.25rem) 0 1.1rem;
+    text-align: center;
+}
+
+.News-Wordmark {
+    font-family: "GothamBlack", Impact, sans-serif;
+    font-size: clamp(2.6rem, 11vw, 7rem);
+    line-height: 0.86;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin: 0;
+}
+
+.News-Motto {
+    font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    font-style: italic;
+    font-size: clamp(0.85rem, 1.6vw, 1rem);
+    color: rgba(0, 19, 68, 0.78);
+    max-width: 46ch;
+    margin: 0.75rem auto 0;
+    line-height: 1.5;
+}
+
+/* --- dateline --- */
+.News-Dateline {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    font-family: "GothamMedium";
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.5rem 0;
+    border-bottom: 3px solid var(--rule);
+    margin-bottom: 1.75rem;
+}
+
+/* --- the grid: lead spans two columns, rail sits on the right --- */
+.News-Grid {
+    display: grid;
+    grid-template-columns: 2fr 1.15fr 1fr;
+    gap: 0;
+}
+
+.News-Lead,
+.News-Story,
+.News-Rail > section {
+    padding: 0 1.5rem;
+}
+
+/* Explicit placement: lead on the left across both rows, the two shorter
+   stories stacked in the middle, brief + classified down the right. Left to
+   auto-placement the third story drifts into the rail's column. */
+.News-Lead {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    padding-left: 0;
+    border-right: 1px solid var(--rule-soft);
+}
+
+.News-Story {
+    grid-column: 2;
+    border-right: 1px solid var(--rule-soft);
+}
+
+.News-Lead + .News-Story {
+    grid-row: 1;
+    align-self: start;
+}
+
+.News-Story + .News-Story {
+    grid-row: 2;
+    align-self: start;
+    border-top: 1px solid var(--rule-soft);
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+}
+
+.News-Rail {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+    padding-right: 0;
+}
+
+.News-Rail > section {
+    padding-right: 0;
+}
+
+/* --- story typography --- */
+.News-Kicker {
+    font-family: "GothamMedium";
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color3);
+    margin-bottom: 0.4rem;
+}
+
+.News-Headline {
+    font-family: "GothamBlack";
+    font-size: clamp(1.7rem, 3.4vw, 2.6rem);
+    line-height: 1.04;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+}
+
+.News-Subhead {
+    font-family: "GothamBlack";
+    font-size: clamp(1.1rem, 1.9vw, 1.3rem);
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+}
+
+.News-Byline {
+    font-family: Georgia, "Times New Roman", serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: rgba(0, 19, 68, 0.6);
+    padding-bottom: 0.7rem;
+    margin-bottom: 0.9rem;
+    border-bottom: 1px solid var(--rule-soft);
+}
+
+.News-Lead p:not(.News-Kicker):not(.News-Byline),
+.News-Story p:not(.News-Kicker):not(.News-Byline) {
+    font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    font-size: 0.97rem;
+    line-height: 1.62;
+    hyphens: auto;
+}
+
+.News-Lead p + p,
+.News-Story p + p {
+    margin-top: 0.85rem;
+}
+
+/* The lead runs in two columns on wide screens, like a real front page */
+.News-Columns {
+    columns: 2;
+    column-gap: 1.6rem;
+    column-rule: 1px solid var(--rule-soft);
+    text-align: justify;
+}
+
+.News-Columns p {
+    break-inside: avoid-column;
+}
+
+/* Drop cap on the opening paragraph only */
+.News-Opening::first-letter {
+    font-family: "GothamBlack", Georgia, serif;
+    float: left;
+    font-size: 3.5em;
+    line-height: 0.76;
+    padding: 0.06em 0.09em 0 0;
+    color: var(--color3);
+}
+
+/* --- rail: in brief --- */
+.News-RailHead {
+    font-family: "GothamBlack";
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+    padding-bottom: 0.45rem;
+    margin-bottom: 0.8rem;
+    border-bottom: 3px double var(--rule);
+}
+
+.News-Brief ul {
+    list-style: none;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.News-Brief li + li {
+    margin-top: 0.7rem;
+    padding-top: 0.7rem;
+    border-top: 1px solid var(--rule-soft);
+}
+
+.News-Brief strong {
+    font-family: "GothamMedium";
+    font-weight: 500;
+}
+
+/* --- rail: the subscribe form, set as a classified advertisement --- */
+.News-Classified {
+    margin-top: 1.75rem;
+    margin-left: 1.5rem;
+    border: 2px solid var(--ink);
+    padding: 1.1rem !important;
+    background: #fff;
+}
+
+.News-ClassifiedRule {
+    font-family: "GothamMedium";
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    text-align: center;
+    color: rgba(0, 19, 68, 0.55);
+    padding-bottom: 0.6rem;
+}
+
+.News-ClassifiedCopy {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.86rem;
+    line-height: 1.5;
+    margin-bottom: 0.9rem;
+}
+
+.News-Form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+.News-Form .Form-Group label {
+    font-family: "GothamMedium";
+    font-size: 0.76rem;
+    color: var(--ink);
+}
+
+.News-Optional {
+    font-family: Georgia, serif;
+    font-style: italic;
+    color: rgba(0, 19, 68, 0.5);
+    font-size: 0.75rem;
+}
+
+.News-Form .Form-Control {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 0;
+    padding: 0.5rem 0.6rem;
+    font-size: 0.9rem;
+}
+
+.News-Form .Form-Control:focus {
+    outline: none;
+    border-color: var(--color3);
+    box-shadow: 0 0 0 3px rgba(0, 72, 255, 0.18);
+    background: #fff;
+}
+
+.News-Submit {
+    font: inherit;
+    font-family: "GothamMedium";
+    font-size: 0.9rem;
+    letter-spacing: 0.06em;
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    border-radius: 0;
+    padding: 0.65rem 1rem;
+    cursor: pointer;
+    transition: background var(--transition-fast);
+}
+
+.News-Submit:hover {
+    background: var(--color3);
+}
+
+.News-FormNote {
+    font-family: Georgia, serif;
+    font-size: 0.74rem;
+    line-height: 1.4;
+    color: rgba(0, 19, 68, 0.6);
+}
+
+/* --- back issues: a real sequence, so the numbering carries information --- */
+.News-Archive {
+    margin-top: 2.5rem;
+    padding-top: 1.1rem;
+    border-top: 3px solid var(--rule);
+}
+
+.News-ArchiveHead {
+    font-family: "GothamBlack";
+    font-size: 0.95rem;
+    margin-bottom: 0.7rem;
+}
+
+.News-ArchiveList {
+    list-style: none;
+}
+
+.News-ArchiveList li {
+    display: grid;
+    grid-template-columns: 5rem 1fr auto;
+    gap: 0.5rem 1rem;
+    align-items: baseline;
+    padding: 0.55rem 0;
+    border-top: 1px solid var(--rule-soft);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.9rem;
+}
+
+.News-ArchiveNo {
+    font-family: "GothamBlack";
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    color: var(--color3);
+}
+
+.News-ArchiveDate {
+    font-style: italic;
+    color: rgba(0, 19, 68, 0.6);
+    font-size: 0.82rem;
+}
+
+.News-Colophon {
+    margin-top: 1.75rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--rule-soft);
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 0.8rem;
+    text-align: center;
+    color: rgba(0, 19, 68, 0.6);
+}
+
+/* --- the sheet refolds rather than shrinking --- */
+@media (max-width: 960px) {
+    .News-Grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .News-Lead {
+        grid-column: 1 / -1;
+        grid-row: auto;
+        border-right: none;
+        border-bottom: 3px solid var(--rule);
+        padding: 0 0 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Two columns: the stories side by side, the rail across the bottom */
+    .News-Lead + .News-Story,
+    .News-Story + .News-Story {
+        grid-row: 2;
+        align-self: start;
+        margin-top: 0;
+        padding-top: 0;
+        border-top: none;
+        padding-left: 0;
+        border-right: none;
+    }
+
+    .News-Lead + .News-Story { grid-column: 1; padding-right: 1.5rem; }
+    .News-Story + .News-Story { grid-column: 2; }
+
+    .News-Rail {
+        grid-column: 1 / -1;
+        grid-row: 3;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        margin-top: 1.75rem;
+        padding-top: 1.25rem;
+        border-top: 3px solid var(--rule);
+    }
+
+    .News-Rail > section {
+        padding: 0;
+        margin: 0;
+    }
+}
+
+@media (max-width: 680px) {
+    .News-Grid {
+        grid-template-columns: 1fr;
+    }
+
+    .News-Columns {
+        columns: 1;
+        text-align: left;
+    }
+
+    .News-Lead + .News-Story,
+    .News-Story + .News-Story,
+    .News-Rail {
+        grid-column: 1;
+        grid-row: auto;
+        display: block;
+        padding: 0;
+        border-left: none;
+    }
+
+    .News-Lead + .News-Story { padding-right: 0; }
+
+    .News-Story + .News-Story,
+    .News-Rail {
+        border-top: 1px solid var(--rule-soft);
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+    }
+
+    .News-Rail > section + section { margin-top: 1.5rem; }
+
+    .News-ArchiveList li {
+        grid-template-columns: 4.5rem 1fr;
+    }
+
+    .News-ArchiveDate {
+        grid-column: 2;
     }
 }
